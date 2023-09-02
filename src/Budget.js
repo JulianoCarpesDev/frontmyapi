@@ -11,7 +11,7 @@ const Budget = () => {
 
   useEffect(() => {
     // Busca os clientes do banco de dados
-    fetch('https://juliano-myapp-4a216f1c0093.herokuapp.com/clients')
+    fetch('https://juliano-myapp-ed782e629c00.herokuapp.com/clients')
       .then(response => response.json())
       .then(data => setClients(data))
       .catch(error => console.error('Erro ao buscar clientes:', error));
@@ -19,7 +19,7 @@ const Budget = () => {
 
   useEffect(() => {
     // Busca os produtos do banco de dados
-    fetch('https://juliano-myapp-4a216f1c0093.herokuapp.com/products')
+    fetch('https://juliano-myapp-ed782e629c00.herokuapp.com/products')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Erro ao buscar produtos:', error));

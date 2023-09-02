@@ -16,7 +16,7 @@ function Products() {
   
   
     useEffect(() => {
-      fetch('https://juliano-myapp-4a216f1c0093.herokuapp.com/products')
+      fetch('https://juliano-myapp-ed782e629c00.herokuapp.com/products')
         .then((returnProduct) => returnProduct.json())
         .then((convertingReturn) => listSetProducts(convertingReturn));
     }, []);
@@ -38,7 +38,7 @@ function Products() {
         return
       }else{
     
-        fetch('https://juliano-myapp-4a216f1c0093.herokuapp.com/save', {
+        fetch('https://juliano-myapp-ed782e629c00.herokuapp.com/save', {
           method: 'post',
           body: JSON.stringify(objProduct),
           headers: {
@@ -60,7 +60,7 @@ function Products() {
     };
     
     const update = () => {
-      fetch('https://juliano-myapp-4a216f1c0093.herokuapp.com/update', {
+      fetch('https://juliano-myapp-ed782e629c00.herokuapp.com/update', {
         method: 'put',
         body: JSON.stringify(objProduct),
         headers: {
@@ -93,7 +93,7 @@ function Products() {
     };
   
     const remove = () => {
-      fetch('https://juliano-myapp-4a216f1c0093.herokuapp.com/remove/' + objProduct.id, {
+      fetch('https://juliano-myapp-ed782e629c00.herokuapp.com/remove/' + objProduct.id, {
         method: 'delete',
         headers: {
           'Content-type': 'application/json',
