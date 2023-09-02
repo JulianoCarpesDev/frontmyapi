@@ -38,7 +38,7 @@ function Products() {
         return
       }else{
     
-        fetch('https://juliano-myapp-ed782e629c00.herokuapp.com/save', {
+        fetch('https://juliano-myapp-ed782e629c00.herokuapp.com/products/save', {
           method: 'post',
           body: JSON.stringify(objProduct),
           headers: {
@@ -60,7 +60,7 @@ function Products() {
     };
     
     const update = () => {
-      fetch('https://juliano-myapp-ed782e629c00.herokuapp.com/update', {
+      fetch('https://juliano-myapp-ed782e629c00.herokuapp.com/products/update', {
         method: 'put',
         body: JSON.stringify(objProduct),
         headers: {
@@ -93,7 +93,7 @@ function Products() {
     };
   
     const remove = () => {
-      fetch('https://juliano-myapp-ed782e629c00.herokuapp.com/remove/' + objProduct.id, {
+      fetch('https://juliano-myapp-ed782e629c00.herokuapp.com/products/remove/' + objProduct.id, {
         method: 'delete',
         headers: {
           'Content-type': 'application/json',
