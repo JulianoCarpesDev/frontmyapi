@@ -65,6 +65,7 @@ const FormBudget = ({ data, onSelect, dataProd }) => {
       setSelectedProduct(null);
       setQuantity(1);
       setProfit(50); // Reinicie o valor padrão de lucro
+      setSelectedProducts([]);
     }
   };
   

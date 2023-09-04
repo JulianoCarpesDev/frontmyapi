@@ -76,9 +76,9 @@ const TableBudget = ({ tableData , selectedClient }) => {
               // Dados da tabela
               ...tableData.map((row) => [
                 row.produto,
-                row.qto,
-                row.preco,
-                row.subtotal,
+                { text: row.qto, alignment: "center" }, // Alinhar à direita
+                { text: row.preco, alignment: "right" }, // Alinhar à direita
+                { text: row.subtotal, alignment: "right" }, // Alinhar à direita
               ]),
             ],
           },
@@ -106,7 +106,7 @@ const TableBudget = ({ tableData , selectedClient }) => {
       defaultStyle: { fontSize: 14 },
     };
   
-    pdfMake.createPdf(documentDefinition).download("orcamento.pdf");
+    pdfMake.createPdf(documentDefinition).download(selectedClient?.name);
   };
   
   
