@@ -54,25 +54,31 @@ form {
 .table td {
   border: 1px solid #ddd;
   padding: 0px;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: bold;
 }
 
 .table tbody tr {
   border-bottom: 1px solid #dddddd;
+  margin: 2px;
+}
+.trbtn{
+  margin: 0 auto;
+  border:1px solid #ddd;
 }
 .espaco{
  width:250px;
 
 }
 .maoObra{
-  height: 30px;
+  height: 20px;
   width: 150px;
   font-size: 20px bold;
 
 }
 .tdinput{
   width: 150px;
+  
 }
 .table thead th {
   border-bottom: 1px solid #333;
@@ -81,6 +87,7 @@ form {
   font-weight: bold;
  
   text-align: center;
+
 }
 .total{
   text-align: left;
@@ -97,13 +104,13 @@ form {
   text-align: right;
 }
 .pdf{
-border-radius: 4px;
+
 background: #4f6cf9;
 color: #fff;
-margin: 0 auto;
 height: 20px;
 font-size: 12px;
 text-align: center;
+width: 150px;
 }
 td {
   vertical-align: middle;

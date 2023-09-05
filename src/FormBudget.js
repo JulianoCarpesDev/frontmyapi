@@ -17,8 +17,8 @@ const FormBudget = ({ data, onSelect, dataProd }) => {
   const [selectedClient, setSelectedClient] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null); // Adicionado
   const [selectedProducts, setSelectedProducts] = useState([]); // Alterado para array
-  const [quantity, setQuantity] = useState(1);
-  const [profit, setProfit] = useState(50);
+  const [quantity, setQuantity] = useState('');
+  const [profit, setProfit] = useState('');
 
   const [tableData, setTableData] = useState([]);
 
@@ -47,7 +47,7 @@ const FormBudget = ({ data, onSelect, dataProd }) => {
     setSelectedProducts([...selectedProducts, selectedProduct]); // Adiciona ao array
     setShowProductOptions(false);
     setQuantity(1);
-    setProfit(profit);
+    setProfit(50);
   };
 
   const handleAddToTable = () => {
@@ -128,13 +128,14 @@ const FormBudget = ({ data, onSelect, dataProd }) => {
             onChange={e => setQuantity(e.target.value)}
             placeholder="Quantidade"
             className="form-control"
-          />
+            onFocus={(e) => e.target.select()}/>
           <input
             type="number"
             value={profit}
             onChange={e => setProfit(e.target.value)}
             placeholder="Lucro (%)"
             className="form-control"
+            onFocus={(e) => e.target.select()}
           />
         </div>
       
@@ -151,6 +152,7 @@ const FormBudget = ({ data, onSelect, dataProd }) => {
             <th scope="col">Cliente</th>
             <th scope="col">E-mail</th>
             <th scope="col">Telefone</th>
+            
             
             
           </tr>

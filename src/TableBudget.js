@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './style.css';
-import { FaPrint } from 'react-icons/fa';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { format } from 'date-fns';
@@ -14,7 +13,7 @@ const currentDate = format(new Date(), 'dd/MM/yyyy'); // Formate a data como pre
 const TableBudget = ({ tableData , selectedClient }) => {
   let total = 0;
   const [maoDeObra, setMaoDeObra] = useState('0.00');
-
+ 
   const handleMaoDeObraChange = (e) => {
     const value = e.target.value;
     setMaoDeObra(value); // Agora, setMaoDeObra sempre receberá o valor, mesmo que seja '0'
@@ -69,17 +68,17 @@ const TableBudget = ({ tableData , selectedClient }) => {
             body: [
               // Cabeçalho da tabela
               [
-                { text: "Produto", style: "tableHeader" },
-                { text: "Quantidade", style: "tableHeader" },
-                { text: "Preço", style: "tableHeader" },
-                { text: "Subtotal", style: "tableHeader" },
+                { text: "Produto", style: "tableHeader",alignment: "center" },
+                { text: "Quantidade", style: "tableHeader",alignment: "center" },
+                { text: "Preço", style: "tableHeader",alignment: "center" },
+                { text: "Subtotal", style: "tableHeader",alignment: "center" },
               ],
               // Dados da tabela
               ...tableData.map((row) => [
                 row.produto,
                 { text: row.qto, alignment: "center" }, // Alinhar à direita
-                { text: row.preco, alignment: "right" }, // Alinhar à direita
-                { text: row.subtotal, alignment: "right" }, // Alinhar à direita
+                { text:"R$: "+ row.preco, alignment: "right" }, // Alinhar à direita
+                { text:"R$: "+ row.subtotal, alignment: "right" }, // Alinhar à direita
               ]),
             ],
           },
@@ -91,8 +90,8 @@ const TableBudget = ({ tableData , selectedClient }) => {
             table: {
               widths: ["*", "*"],
               body: [
-                ["Mão de Obra:", { text: "R$ " + parseFloat(maoDeObra).toFixed(2), alignment: "right" }],
-                ["Total:", { text: "R$ " + (parseFloat(total) + parseFloat(maoDeObra)).toFixed(2), alignment: "right" }],
+                ["Mão de Obra:", { text: "R$: " + parseFloat(maoDeObra).toFixed(2), alignment: "right" }],
+                ["Total dos Serviços:", { text: "R$: " + (parseFloat(total) + parseFloat(maoDeObra)).toFixed(2), alignment: "right" }],
               ],
             },
             layout: "Borders",
@@ -131,7 +130,7 @@ const TableBudget = ({ tableData , selectedClient }) => {
               const subtotal = parseFloat(row.subtotal);
               const precoValido = !isNaN(preco); // Verifica se o preço é um número válido
               const subtotalValido = !isNaN(subtotal); // Verifica se o subtotal é um número válido
-
+              
               total += subtotalValido ? subtotal : 0; // Soma ao total apenas se o subtotal for válido
 
               return (
@@ -140,6 +139,7 @@ const TableBudget = ({ tableData , selectedClient }) => {
                   <td>{row.qto}</td>
                   <td className='valores'>{precoValido ? preco.toFixed(2) : 'Preço Inválido'}</td>
                   <td className='valores'>{subtotalValido ? subtotal.toFixed(2) : 'Subtotal Inválido'}</td>
+                  
                 </tr>
               );
             })}
@@ -151,20 +151,19 @@ const TableBudget = ({ tableData , selectedClient }) => {
   <table className="table">
     <tbody>
       <tr>
+        <td>Digite valor da mao de obra</td>
+      </tr>
+      <tr>
         <td className='tdinput'>
+         
           <input
             type='text'
             value={maoDeObra }
             onChange={handleMaoDeObraChange}
             className="maoObra"
-            placeholder='Mao de obra'
+            placeholder='Valor da Mão de Obra'
             onFocus={(e) => e.target.select()}
           />
-        </td>
-        
-          
-        <td>
-        <FaPrint color='red' size={20} className='print' onClick={generatePDF}></FaPrint>
         </td>
         <td className='espaco'></td>
         <td>Total  </td>
@@ -172,17 +171,19 @@ const TableBudget = ({ tableData , selectedClient }) => {
        
         
       </tr>
-      <tr>
-       
+      <tr className='trbtn'>
+      <td><button className='pdf' onClick={generatePDF}>Imprimir</button></td>
       </tr>
+      
     </tbody>
     
     
     
   </table>
   
+  
 )}
-
+     
     </div>
     </>
   );
