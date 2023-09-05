@@ -1,9 +1,28 @@
 h1 {
-  color: white;
+  color: black;
   text-align: center;
   margin: 30px auto;
 }
+.orcamento{
+  color: #000;
+}
+.scrollview-container {
+  margin: 0 auto 0 5px;
+  width: 330px; /* Largura do contêiner */
+  height: 100px; /* Altura máxima visível */
+  border: 1px solid #ccc;
+  overflow: auto; /* Habilita a rolagem */
 
+}
+
+/* Estilos para o conteúdo dentro do ScrollView */
+.scrollview-content {
+  
+  width: 100%; /* Largura total */
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  text-align: left;
+}
 .btn {
   margin: 5px;
   padding: 1px;
@@ -43,21 +62,24 @@ form {
   border-bottom: 1px solid #dddddd;
 }
 .espaco{
- width:300px;
+ width:250px;
 
 }
 .maoObra{
-  height: 22px;
-  width: 100px;
-  font-size: 14px bold;
+  height: 30px;
+  width: 150px;
+  font-size: 20px bold;
 
+}
+.tdinput{
+  width: 150px;
 }
 .table thead th {
   border-bottom: 1px solid #333;
   background-color: #4f6cf9;
   color: #fff;
   font-weight: bold;
-  border-radius: 4px;
+ 
   text-align: center;
 }
 .total{
@@ -67,6 +89,12 @@ form {
 .centralizar {
   text-align: center;
   font-weight: bold;
+}
+.nomes{
+  text-align: left;
+}
+.valores{
+  text-align: right;
 }
 .pdf{
 border-radius: 4px;

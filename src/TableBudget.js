@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './style.css';
+import { FaPrint } from 'react-icons/fa';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { format } from 'date-fns';
@@ -12,7 +13,7 @@ const currentDate = format(new Date(), 'dd/MM/yyyy'); // Formate a data como pre
 
 const TableBudget = ({ tableData , selectedClient }) => {
   let total = 0;
-  const [maoDeObra, setMaoDeObra] = useState('0');
+  const [maoDeObra, setMaoDeObra] = useState('0.00');
 
   const handleMaoDeObraChange = (e) => {
     const value = e.target.value;
@@ -110,8 +111,10 @@ const TableBudget = ({ tableData , selectedClient }) => {
   };
   
   
-  return (
+  return (<>
+  
     <div>
+      
       {tableData.length > 0 && (
         <table className="table">
           <thead className="thead-dark">
@@ -133,10 +136,10 @@ const TableBudget = ({ tableData , selectedClient }) => {
 
               return (
                 <tr key={index}>
-                  <td>{row.produto}</td>
+                  <td className='nomes'>{row.produto}</td>
                   <td>{row.qto}</td>
-                  <td>{precoValido ? preco.toFixed(2) : 'Preço Inválido'}</td>
-                  <td>{subtotalValido ? subtotal.toFixed(2) : 'Subtotal Inválido'}</td>
+                  <td className='valores'>{precoValido ? preco.toFixed(2) : 'Preço Inválido'}</td>
+                  <td className='valores'>{subtotalValido ? subtotal.toFixed(2) : 'Subtotal Inválido'}</td>
                 </tr>
               );
             })}
@@ -148,7 +151,7 @@ const TableBudget = ({ tableData , selectedClient }) => {
   <table className="table">
     <tbody>
       <tr>
-        <td>
+        <td className='tdinput'>
           <input
             type='text'
             value={maoDeObra }
@@ -158,20 +161,30 @@ const TableBudget = ({ tableData , selectedClient }) => {
             onFocus={(e) => e.target.select()}
           />
         </td>
+        
+          
         <td>
-          <button className='pdf' onClick={generatePDF}>Gerar PDF</button>
+        <FaPrint color='red' size={20} className='print' onClick={generatePDF}></FaPrint>
         </td>
         <td className='espaco'></td>
         <td>Total  </td>
-        <td>&nbsp;{(parseFloat(total) + parseFloat(maoDeObra)).toFixed(2)}</td>
+        <td className='valores'>&nbsp;{(parseFloat(total) + parseFloat(maoDeObra)).toFixed(2)}</td>
+       
+        
+      </tr>
+      <tr>
        
       </tr>
     </tbody>
+    
+    
+    
   </table>
+  
 )}
 
-      
     </div>
+    </>
   );
 };
 

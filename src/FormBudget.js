@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import './style.css'; // Certifique-se de ter um arquivo CSS para estilizar o formulário
 import { FaPlus} from 'react-icons/fa';
 import TableBudget from './TableBudget.js'; // Importe o componente TableBudget
-import { format } from 'date-fns';
-const currentDate = format(new Date(), 'dd/MM/yyyy'); // Formate a data como preferir
+//import { format } from 'date-fns';
+//const currentDate = format(new Date(), 'dd/MM/yyyy'); // Formate a data como preferir
 
 const FormBudget = ({ data, onSelect, dataProd }) => {
 
@@ -23,6 +23,7 @@ const FormBudget = ({ data, onSelect, dataProd }) => {
   const [tableData, setTableData] = useState([]);
 
   const handleClientInputClick = () => {
+    
     setShowClientOptions(true);
     setShowProductOptions(false);
   };
@@ -37,6 +38,7 @@ const FormBudget = ({ data, onSelect, dataProd }) => {
     setShowClientOptions(false);
     setSelectedClient(selectedClient);
     onSelect(selectedClient);
+    
   };
 
   const handleProductOptionClick = selectedProduct => {
@@ -71,29 +73,31 @@ const FormBudget = ({ data, onSelect, dataProd }) => {
   
   
   const clientOptions = showClientOptions && data ? (
-    <ul className="options">
+    <div className="scrollview-container">
       {data.map(client => (
-        <li key={client.id} onClick={() => handleClientOptionClick(client)}>
+        <p className='scrollview-content' key={client.id} onClick={() => handleClientOptionClick(client)}>
           {client.name}
-        </li>
+        </p>
       ))}
-    </ul>
+    </div>
   ) : null;
 
   const productOptions = showProductOptions && dataProd ? (
-    <ul className="options">
+    
+    <div className="scrollview-container">
       {dataProd.map(product => (
-        <li key={product.id} onClick={() => handleProductOptionClick(product)}>
+        < p className='scrollview-content' key={product.id} onClick={() => handleProductOptionClick(product)}>
           {product.name}
-        </li>
+        </p>
       ))}
-    </ul>
+    </div>
   ) : null;
 
-  return (
+  return (<>
+    
     <div className="form-container">
       <form className="my-form">
-        <h1>Orcamento</h1>
+        <h1>Orçamento</h1>
         <div className="autocomplete">
           <input
             type="text"
@@ -146,17 +150,17 @@ const FormBudget = ({ data, onSelect, dataProd }) => {
           <tr>
             <th scope="col">Cliente</th>
             <th scope="col">E-mail</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Date</th>
-            <th>Servico</th>
+            <th scope="col">Telefone</th>
+            
+            
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>{selectedClient?.name}</td>
+            <td className='nomes'>{selectedClient?.name}</td>
             <td>{selectedClient?.email}</td>
             <td>{selectedClient?.phone}</td>
-            <td>{currentDate}</td>
+            
           </tr>
          
         </tbody>
@@ -166,6 +170,7 @@ const FormBudget = ({ data, onSelect, dataProd }) => {
       {/* Renderize o componente TableBudget aqui, passando selectedProducts e tableData */}
       <TableBudget selectedClient={selectedClient} selectedProducts={selectedProducts} tableData={tableData} />
     </div>
+    </>
   );
 };
 
