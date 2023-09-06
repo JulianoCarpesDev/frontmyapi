@@ -4,6 +4,8 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { format } from 'date-fns';
 
+
+
 // Suponha que 'Roboto-Bold.ttf' esteja no diretório 'fonts' do seu projeto
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -36,7 +38,7 @@ const TableBudget = ({ tableData , selectedClient }) => {
           ],
         },
         { text: "\n" },
-        { text: "Orcamento", style:"title" },
+        { text: "Orçamento", style:"title" },
         { text: "\n" },
     { text: `Data: ${currentDate}`, alignment: 'right' }, // Inclua a data aqui
         {
@@ -107,8 +109,10 @@ const TableBudget = ({ tableData , selectedClient }) => {
     };
   
     pdfMake.createPdf(documentDefinition).download(selectedClient?.name);
+   
   };
   
+
   
   return (<>
   
@@ -173,6 +177,7 @@ const TableBudget = ({ tableData , selectedClient }) => {
       </tr>
       <tr className='trbtn'>
       <td><button className='pdf' onClick={generatePDF}>Imprimir</button></td>
+      
       </tr>
       
     </tbody>
