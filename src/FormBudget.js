@@ -9,12 +9,14 @@ import TableBudget from './TableBudget.js'; // Importe o componente TableBudget
 const FormBudget = ({ data, onSelect, dataProd }) => {
 
   const [clientInputValue, setClientInputValue] = useState('');
+  
   const [showClientOptions, setShowClientOptions] = useState(false);
 
   const [productInputValue, setProductInputValue] = useState('');
   const [showProductOptions, setShowProductOptions] = useState(false);
 
   const [selectedClient, setSelectedClient] = useState(null);
+  
   const [selectedProduct, setSelectedProduct] = useState(null); // Adicionado
   const [selectedProducts, setSelectedProducts] = useState([]); // Alterado para array
   const [quantity, setQuantity] = useState('');
@@ -34,7 +36,7 @@ const FormBudget = ({ data, onSelect, dataProd }) => {
   };
 
   const handleClientOptionClick = selectedClient => {
-    setClientInputValue(selectedClient.name);
+    setClientInputValue(selectedClient.name.charAt(0).toUpperCase()+selectedClient.name.slice(1));
     setShowClientOptions(false);
     setSelectedClient(selectedClient);
     onSelect(selectedClient);
@@ -42,7 +44,7 @@ const FormBudget = ({ data, onSelect, dataProd }) => {
   };
 
   const handleProductOptionClick = selectedProduct => {
-    setProductInputValue(selectedProduct.name);
+    setProductInputValue(selectedProduct.name.charAt(0).toUpperCase() + selectedProduct.name.slice(1));
     setSelectedProduct(selectedProduct); // Alterado para definir selectedProduct
     setSelectedProducts([...selectedProducts, selectedProduct]); // Adiciona ao array
     setShowProductOptions(false);

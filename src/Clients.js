@@ -32,13 +32,13 @@ function Clients() {
         alert("Nome nao pode ficar vazio")
         return
     }else if(objClient.email === ''){
-      alert("E-mail nao foi adicionada")
+      alert("E-mail nao foi adicionado")
       return
     }else if (objClient.phone === '') {
         alert("Telefone nao foi incluido");
         return;
       }else{
-    
+        
         fetch('https://juliano-myapp-ed782e629c00.herokuapp.com/clients/save', {
           method: 'post',
           body: JSON.stringify(objClient),

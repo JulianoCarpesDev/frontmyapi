@@ -12,9 +12,9 @@ function FormProducts({event,register,obj,cancel,remove,update}){
       <form className="my-form">
         <h1>Cadastro de Produtos</h1>
         
-      <input type="text"value={obj.name} onChange={event} name="name" placeholder="Name" className="form-control" />
-      <input type="number" value={obj.price} onChange={event} name="price" placeholder="Price" className="form-control" />
-      <input type="txt" value={obj.description} onChange={event} name="description" placeholder="Description" className="form-control" />
+      <input type="text"value={obj.name} onChange={event} name="name" placeholder="Nome" className="form-control" />
+      <input type="number" value={obj.price} onChange={event} name="price" placeholder="Preço" className="form-control" />
+      <input type="txt" value={obj.description} onChange={event} name="description" placeholder="Descrição" className="form-control" />
       
       
       <div>
