@@ -103,6 +103,19 @@ form {
 .valores{
   text-align: right;
 }
+/* style.css */
+.container {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  margin: 20px auto;
+  text-align: center; /* Centraliza o texto */
+}
+
+.content {
+  max-width: 400px; /* Largura máxima do conteúdo */
+}
+
 .pdf{
 
 background: #4f6cf9;
@@ -112,6 +125,27 @@ font-size: 12px;
 text-align: center;
 width: 150px;
 }
+/* style.css */
+
+.logo {
+  width: 200px; /* Largura desejada para a imagem */
+  height: auto; /* A altura será ajustada automaticamente para manter a proporção */
+  margin: 5px; /* Margem ao redor da imagem */
+  border: 2px solid #333; /* Uma borda de exemplo */
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+.btnHome{
+
+  background: #4f6cf9;
+  color: #fff;
+  height: 30px;
+  font-size: 12px;
+  text-align: center;
+  width: 100px;
+  border-radius: 10px;
+  }
 td {
   vertical-align: middle;
   text-align: center;

@@ -1,6 +1,11 @@
 import './style.css';
 import { FaCog } from 'react-icons/fa';
+import { formatPhoneNumber } from './config/Configs';
 function TableClients({vect,select}){
+    const formatPhone =(number)=>{
+        return formatPhoneNumber(number)
+      }
+
     return(<table className="table">
     <thead className="thead-dark">
       <tr>
@@ -19,7 +24,7 @@ function TableClients({vect,select}){
                         <td className='centralizar'>{indice + 1}</td>
                         <td>{obj.name}</td>
                         <td>{obj.email}</td>
-                        <td>{obj.phone}</td>
+                        <td>{formatPhone(obj.phone)}</td>
                         <td><FaCog onClick={()=>{select(indice)}} className="btn btn-danger"></FaCog></td>
                        
                     </tr>

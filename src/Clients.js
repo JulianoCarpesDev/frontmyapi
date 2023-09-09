@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react';
 import FormClients from './FormClients';
 import TableClients from './TableClients';
 
-function Clients() {
 
+
+function Clients() {
     const client = {
       id:0,
       name: '',
@@ -15,7 +16,6 @@ function Clients() {
     const [btnCreate, setBtnCreate] = useState(true);
     const [listClients, listSetClients] = useState([]);// array de produtos
     const [objClient, setObjClient] = useState(client); // Definindo o estado objProducts aqui
-  
   
     useEffect(() => {
       fetch('https://juliano-myapp-ed782e629c00.herokuapp.com/clients')
@@ -37,8 +37,9 @@ function Clients() {
     }else if (objClient.phone === '') {
         alert("Telefone nao foi incluido");
         return;
-      }else{
-        
+      }
+      else{
+
         fetch('https://juliano-myapp-ed782e629c00.herokuapp.com/clients/save', {
           method: 'post',
           body: JSON.stringify(objClient),
