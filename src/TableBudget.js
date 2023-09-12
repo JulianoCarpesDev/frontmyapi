@@ -175,7 +175,7 @@ const TableBudget = ({ tableData , selectedClient }) => {
       <tr>
         <td>Digite valor da mao de obra</td>
         <td>Desconto</td>
-        <td>Acessorios Instalação</td>
+        <td>Acessórios</td>
       </tr>
       <tr>
         <td className='tdinput'>
@@ -189,22 +189,22 @@ const TableBudget = ({ tableData , selectedClient }) => {
             onFocus={(e) => e.target.select()}
           />
         </td>
-        <td className='tdinput'>
+        <td className='tdOutros'>
         <input
             type='text'
             value={desconto }
             onChange={handleDesconto}
-            className="maoObra"
+            className="outros"
             placeholder='Desconto'
             onFocus={(e) => e.target.select()}
           />
         </td>
-        <td className='tdinput'>
+        <td className='tdOutros'>
         <input
             type='text'
             value={acrescimo}
             onChange={handleAcrescimo}
-            className="maoObra"
+            className="outros"
             placeholder='Acrescimo'
             onFocus={(e) => e.target.select()}
           />

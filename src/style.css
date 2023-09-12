@@ -76,8 +76,18 @@ form {
   font-size: 20px bold;
 
 }
+.outros{
+  height: 20px;
+  width: 50px;
+  font-size: 20px bold;
+
+}
 .tdinput{
   width: 150px;
+  
+}
+.tdOutros{
+  width: 70px;
   
 }
 .table thead th {
