@@ -3,6 +3,8 @@ import './style.css';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { format } from 'date-fns';
+import { formatPhoneNumber } from './config/Configs';
+
 
 
 
@@ -14,11 +16,23 @@ const currentDate = format(new Date(), 'dd/MM/yyyy'); // Formate a data como pre
 
 const TableBudget = ({ tableData , selectedClient }) => {
   let total = 0;
+  let discount= 0;
+  let  increase = 0;
   const [maoDeObra, setMaoDeObra] = useState('0.00');
+  const [desconto, setDesconto] = useState("0.00");
+  const [acrescimo, setAcrescimo] = useState("0.00");
  
   const handleMaoDeObraChange = (e) => {
-    const value = e.target.value;
+    const value = e.target.value.replace(/,/g, '.');
     setMaoDeObra(value); // Agora, setMaoDeObra sempre receberá o valor, mesmo que seja '0'
+  };
+  const handleDesconto = (e) => {
+    const value = e.target.value.replace(/,/g, '.');
+    setDesconto(value); // Agora, setMaoDeObra sempre receberá o valor, mesmo que seja '0'
+  };
+  const handleAcrescimo = (e) => {
+    const value = e.target.value.replace(/,/g, '.');
+    setAcrescimo(value); // Agora, setMaoDeObra sempre receberá o valor, mesmo que seja '0'
   };
   const generatePDF = () => {
   // Leia a imagem como um arquivo
@@ -57,7 +71,7 @@ const TableBudget = ({ tableData , selectedClient }) => {
         {
           text: [
             "Telefone: ",
-            { text: selectedClient?.phone || "" },
+            { text: formatPhoneNumber(selectedClient?.phone || "") },
           ],
         },
         
@@ -81,6 +95,7 @@ const TableBudget = ({ tableData , selectedClient }) => {
                 { text: row.qto, alignment: "center" }, // Alinhar à direita
                 { text:"R$: "+ row.preco, alignment: "right" }, // Alinhar à direita
                 { text:"R$: "+ row.subtotal, alignment: "right" }, // Alinhar à direita
+                
               ]),
             ],
           },
@@ -93,7 +108,9 @@ const TableBudget = ({ tableData , selectedClient }) => {
               widths: ["*", "*"],
               body: [
                 ["Mão de Obra:", { text: "R$: " + parseFloat(maoDeObra).toFixed(2), alignment: "right" }],
-                ["Total dos Serviços:", { text: "R$: " + (parseFloat(total) + parseFloat(maoDeObra)).toFixed(2), alignment: "right" }],
+                ["Desconto:", { text: "R$: " + parseFloat(desconto).toFixed(2), alignment: "right" }],
+                ["Acessórios Instalação:", { text: "R$: " + parseFloat(acrescimo).toFixed(2), alignment: "right" }],
+                ["Total dos Serviços:", { text: "R$: " + (parseFloat(total) + parseFloat(maoDeObra) - parseFloat(desconto) + parseFloat(acrescimo)).toFixed(2), alignment: "right" }],
               ],
             },
             layout: "Borders",
@@ -136,7 +153,8 @@ const TableBudget = ({ tableData , selectedClient }) => {
               const subtotalValido = !isNaN(subtotal); // Verifica se o subtotal é um número válido
               
               total += subtotalValido ? subtotal : 0; // Soma ao total apenas se o subtotal for válido
-
+              discount-=subtotalValido ? subtotal:0;
+              increase += total;
               return (
                 <tr key={index}>
                   <td className='nomes'>{row.produto}</td>
@@ -156,6 +174,8 @@ const TableBudget = ({ tableData , selectedClient }) => {
     <tbody>
       <tr>
         <td>Digite valor da mao de obra</td>
+        <td>Desconto</td>
+        <td>Acessorios Instalação</td>
       </tr>
       <tr>
         <td className='tdinput'>
@@ -169,9 +189,28 @@ const TableBudget = ({ tableData , selectedClient }) => {
             onFocus={(e) => e.target.select()}
           />
         </td>
-        <td className='espaco'></td>
+        <td className='tdinput'>
+        <input
+            type='text'
+            value={desconto }
+            onChange={handleDesconto}
+            className="maoObra"
+            placeholder='Desconto'
+            onFocus={(e) => e.target.select()}
+          />
+        </td>
+        <td className='tdinput'>
+        <input
+            type='text'
+            value={acrescimo}
+            onChange={handleAcrescimo}
+            className="maoObra"
+            placeholder='Acrescimo'
+            onFocus={(e) => e.target.select()}
+          />
+        </td>
         <td>Total  </td>
-        <td className='valores'>&nbsp;{(parseFloat(total) + parseFloat(maoDeObra)).toFixed(2)}</td>
+        <td className='valores'>&nbsp;{(parseFloat(total) + parseFloat(maoDeObra) + parseFloat(acrescimo) - parseFloat(desconto) ).toFixed(2)}</td>
        
         
       </tr>
