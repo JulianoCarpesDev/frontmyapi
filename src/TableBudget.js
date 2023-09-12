@@ -18,21 +18,21 @@ const TableBudget = ({ tableData , selectedClient }) => {
   let total = 0;
   let discount= 0;
   let  increase = 0;
-  const [maoDeObra, setMaoDeObra] = useState('0.00');
-  const [desconto, setDesconto] = useState("0.00");
-  const [acrescimo, setAcrescimo] = useState("0.00");
+  const [maoDeObra, setMaoDeObra] = useState(0.00);
+  const [desconto, setDesconto] = useState(0.00);
+  const [acrescimo, setAcrescimo] = useState(0.00);
  
   const handleMaoDeObraChange = (e) => {
     const value = e.target.value.replace(/,/g, '.');
-    setMaoDeObra(value); // Agora, setMaoDeObra sempre receberá o valor, mesmo que seja '0'
+    setMaoDeObra(value ?value: 0); // Agora, setMaoDeObra sempre receberá o valor, mesmo que seja '0'
   };
   const handleDesconto = (e) => {
     const value = e.target.value.replace(/,/g, '.');
-    setDesconto(value); // Agora, setMaoDeObra sempre receberá o valor, mesmo que seja '0'
+    setDesconto(value ?value: 0); // Agora, setMaoDeObra sempre receberá o valor, mesmo que seja '0'
   };
   const handleAcrescimo = (e) => {
     const value = e.target.value.replace(/,/g, '.');
-    setAcrescimo(value); // Agora, setMaoDeObra sempre receberá o valor, mesmo que seja '0'
+    setAcrescimo(value ?value: 0); // Agora, setMaoDeObra sempre receberá o valor, mesmo que seja '0'
   };
   const generatePDF = () => {
   // Leia a imagem como um arquivo
